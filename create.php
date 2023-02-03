@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="row">
+        <!-- MENGAMBIL NAVBAR  -->
         <?php include('navbar.php') ?>
         <div class="row">
             <div class="col-8 mx-auto mt-4">
@@ -17,6 +18,7 @@
                     </div>
                     <div class="card-body">
                         <!-- LOKASI FORM UNTUK TAMBAH BUKU -->
+                        <!-- FORM YANG MELAKUKAN POST KE FILE create_process.php  -->
                         <form action="create_process.php" method="post">
                             <input type="hidden" name="id">
                             <div class="form-group">
@@ -47,9 +49,12 @@
                                 <label for="penerbit">Penerbit</label>
                                 <select class="form-control" id="penerbit" name="penerbit">
                                 <?php 
+                                //mengambil config.php untuk koneksi ke database
                                 include 'config.php';
                                      $query = "SELECT * FROM penerbit";
                                      $result = mysqli_query($conn, $query);
+                                     //pengulangan pada select option penerbit yang diambil dari table penerbit
+                                     //value diisi dari id_penerbit dan teks yang muncul diambil dari nama penerbit
                                      while($data = mysqli_fetch_array($result)) {
                                          if($data['id_penerbit'] == $row['id_penerbit']) {
                                              echo "<option value='$data[id_penerbit]' selected>$data[penerbit]</option>";

@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="row">
+        <!-- MENGAMBIL NAVBAR  -->
         <?php include('navbar.php') ?>
         <div class="row">
             <div class="col-8 mx-auto mt-4">
@@ -18,14 +19,19 @@
                     <div class="card-body">
                         <!-- LOKASI FORM UNTUK EDIT BUKU -->
                         <?php
+                        //config.php untuk koneksi database
                             include 'config.php';
 
                             $id = $_GET['id'];
                             $query = "SELECT * FROM buku AS b INNER JOIN penerbit AS p ON b.id_penerbit = p.id_penerbit WHERE id_buku = '$id'";
+                            //FUNGSI YANG DIGUNAKAN UNTUK MENGISI VALUE DARI FIELD YANG ADA
                             $result = mysqli_query($conn, $query);
 
                             $row = mysqli_fetch_array($result);
                         ?>
+                        <!-- DISINI AKAN MENAMPILKAN FIELD YANG SUDAH DIISI SESUAI DENGAN DATA DI DATABASE  -->
+                        <!-- BISA DILIHAT DI value="$row['']" -->
+                        <!-- FORM UNTUK MELAKUKAN POST KE FILE update.php  -->
                         <form action="update.php" method="post">
                             <input type="hidden" name="id" value="<?= $row['id_buku']; ?>">
                             <div class="form-group">
@@ -58,6 +64,7 @@
                                 <?php 
                                      $query = "SELECT * FROM penerbit";
                                      $result = mysqli_query($conn, $query);
+                                     //pengulangan untuk select option berdasar table penerbit                                     
                                      while($data = mysqli_fetch_array($result)) {
                                          if($data['id_penerbit'] == $row['id_penerbit']) {
                                              echo "<option value='$data[id_penerbit]' selected>$data[penerbit]</option>";

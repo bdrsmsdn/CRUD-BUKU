@@ -14,12 +14,13 @@
 </nav>
 
 <script>
+  // fungsi javascript yang akan mengaktifkan nav-link ketika dipilih 
 const currentPage = window.location.pathname;
 const navLinks = document.querySelectorAll('.nav-link');
 
 navLinks.forEach(link => {
   const linkPage = link.getAttribute('href');
-  if (currentPage == linkPage) {
+  if (currentPage.includes(linkPage)) {
     link.classList.add('active');
   }
 });

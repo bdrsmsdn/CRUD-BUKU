@@ -10,6 +10,7 @@
 </head>
   <body>
     <div class="row">
+        <!-- MENGAMBIL NAVBAR  -->
     <?php include('navbar.php') ?>
     <div class="row">
         <div class="col-8 mx-auto mt-4">
@@ -26,12 +27,16 @@
                         </thead>
                         <tbody>
                         <?php
+                        //mengambil file config.php untuk koneksi ke database
             include 'config.php';
                 $query = "SELECT * FROM buku AS b INNER JOIN penerbit AS p ON b.id_penerbit = p.id_penerbit ORDER BY b.stok ASC";
-                $result = mysqli_query($conn, $query);            
+                $result = mysqli_query($conn, $query);    
+                //pengulangan dari response berdasar query sql        
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <tr>
+                    <!-- read data untuk menentukan nama, penerbit, stok  -->
+                    <!-- variable yang sama seperti di table buku yang dijoinkan dengan penerbit di database  -->
                     <td><?= $row['nama']; ?></td>
                     <td><?= $row['penerbit']; ?></td>
                     <td><?= $row['stok']; ?></td>
